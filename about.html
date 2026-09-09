@@ -3,97 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1.0">
-    <title>Culinary King | About Us</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary King | Our Story, Heritage & Philosophy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- ----------------------------------------NAVBAR----------------------------------------------------->
     <nav class="nav nav_top">
-        <div class="logo">
-            <a href="index.html"><img src="images/logo.png" width="250"></a>
-        </div>
-        <div class="nav_side">
-            <a href="about.html">ABOUT US</a>
-            <a href="summer.html">SUMMER SALE</a>
-            <a href="catering.html">CATERING</a>
-            <a href="contact.html">CONTACT</a>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="Culinary King Logo"></a>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav_side">
+                <a href="index.html">HOME</a>
+                <a href="about.html" class="active">ABOUT US</a>
+                <a href="summer.html">SUMMER SALE</a>
+                <a href="catering.html">CATERING</a>
+                <a href="contact.html">CONTACT</a>
+                <a href="cart.html" class="nav-cart-btn">
+                    <i class="fa fa-shopping-cart"></i> CART (<span data-cart-count>0</span>)
+                </a>
+                <div class="auth-wrapper" data-auth-container>
+                    <a href="login.html" class="auth-link" data-auth-link>LOG IN</a>
+                </div>
+            </div>
         </div>
     </nav>
-    <!-- -------------------------------------------ABOUT US--------------------------------------------------------->
-    <div class="about_us" style="padding-top:100px;">
-        <h2>WHO WE ARE</h2>
-        <div class="about_content">
-            <h5>Philly-proud. Cheese-centric. Legacy-inspired. Purveyors of Happiness.</h5>
-            <p>Walk into our shops and you'll notice there's just something in the air here (and it's not just the smell of cheese). It's magical. Meet a monger and hear a tale of cheesemakers near and far, explore a world of culinary delights, hit the prepared foods counter for deliciously easy eating. Walk by any counter and you'll hear plenty of "you gotta try this" and "mmm... what IS that," accompanied by that wide-eyed look that any food lover knows well. We share a taste of something incredible with everyone who walks through our doors. We make sure every visit to Culinary King. offers a bite of something that is delicious and maybe even life-changing. Pro-Tip: Ask our mongers for a bite of their favorite cheese pairing of the moment.</p>
+
+    <!-- ----------------------------------------ABOUT MAIN------------------------------------------------->
+    <main class="about-page-container">
+        <!-- Hero Card -->
+        <section class="about-hero-card">
+            <h1>Philly-Proud. Cheese-Centric. Legacy-Inspired.</h1>
+            <p class="subtitle">Purveyors of happiness and extraordinary culinary experiences since 1989.</p>
+        </section>
+
+        <!-- Stats Grid -->
+        <section class="about-stats-grid">
+            <div class="stat-box">
+                <div class="stat-number">1989</div>
+                <div class="stat-label">Founded in Italian Market</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">350+</div>
+                <div class="stat-label">Proud Cheesemongers & Staff</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Curated Farmstead Delicacies</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">50k+</div>
+                <div class="stat-label">Happy Gourmet Connoisseurs</div>
+            </div>
+        </section>
+
+        <!-- Chapter 1: The Origin -->
+        <section class="about-story-section">
+            <div class="about-story-content">
+                <h2>Our Story: Born in the Italian Market</h2>
+                <p>Walk into our shops and you'll immediately notice there's something magical in the air (and it's not just the aroma of cave-aged Parmigiano). It began in 1989 with a modest, passionate storefront nestled in North Philadelphia's historic Italian Market.</p>
+                <p>Our founder set out with a simple yet ambitious mission: to connect neighborhood tables with the most profound, small-batch food traditions on the planet. From hand-stretched mozzarella to Prosciutto di Parma aged for centuries using traditional methods, we celebrate the hands that feed us.</p>
+            </div>
+            <div class="about-story-img">
+                <img src="images/pic1.jpg" alt="Italian Market Culinary Roots">
+            </div>
+        </section>
+
+        <!-- Chapter 2: The Philosophy -->
+        <section class="about-story-section" style="direction: rtl;">
+            <div class="about-story-content" style="direction: ltr;">
+                <h2>Master Cheesemongers & Passionate Food Nerds</h2>
+                <p>What's better than discovering a sublime new pairing that leaves everyone at the table wide-eyed and asking, <em>"What IS that?!"</em></p>
+                <p>That electrifying moment is what drives us every single day. Our mongers spend years mastering cheese microbiology, affineur techniques, sensory pairings, and heritage butchery. We don't just sell cheese; we share the stories of multigenerational cheesemakers in the Swiss Alps, Spanish Pyrenees, and American farmsteads.</p>
+            </div>
+            <div class="about-story-img" style="direction: ltr;">
+                <img src="images/pic3.jpg" alt="Master Cheesemonger Pairings">
+            </div>
+        </section>
+
+        <!-- Core Pillars -->
+        <div class="section-headline" style="margin-top: 50px;">
+            <h2>The Pillars of Culinary King</h2>
+            <p>Every gourmet package we ship is guided by our four founding commitments.</p>
         </div>
-        <hr>
-        <h2>WE BRING PEOPLE TOGETHER.</h2>
-        <p>There's nothing like sharing an amazing meal around the table with the people you love--and of course, the power of food! Think of all the "you gotta try that" and the "WOW, what is that?" and even the "no way, I'm not trying that" that leads to great memories. With the traditions of the table, tales of Grandma's meatballs, and the giddiness that great food brings--we just eat it up.</p>
-        <hr>
-        <h2>OUR LOVE FOR FOOD DRIVES US TO BE EXPERTS.</h2>
-        <p>What's better than finding that new something that all your friends go crazy over? Before you know it, everyone’s calling you up saying, “Have you tried this yet?” and “Oh, try it like that and get ready to be wowed!” That’s the feeling we strive for everyday. Back that up with a dedication to knowing all there is about the food world—from learning about generations of cheesemakers, the way Prosciutto di Parma has been made for the same way for centuries, and the process for which rennet comes together with milk to become cheese. To be straight up, we are complete food nerds and proud of it.</p>
-    </div>
-    <!-- --------------------------------------------FEED--------------------------------------------------------->
-    <div class="feed">
-        <h2>WRITE A REVIEW</h2>
-        <div class="feed_form" method="post">
-        <form name="submit-googlesheet">
-            <input type="text" name="Name" placeholder="Name"><br>
-            <input type="email" name="Email" placeholder="Email ID"><br>
-            <input type="text" name="Number" placeholder="Contact Number"><br>
-            <textarea rows="5" cols="7" name="Review" placeholder="Write your review"></textarea><br>
-            <button type="submit">Submit</button>
-        </form>
+
+        <section class="pillars-grid">
+            <div class="pillar-card">
+                <div class="pillar-icon"><i class="fa fa-cutlery"></i></div>
+                <h3>Artisanal Integrity</h3>
+                <p>We champion heritage methods, natural curing, non-GMO dairy, and time-tested recipes that resist industrial shortcuts.</p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-icon"><i class="fa fa-truck"></i></div>
+                <h3>Cold-Chain Perfection</h3>
+                <p>From our temperature-controlled aging caves directly to your doorstep in eco-insulated cold packs, freshness is guaranteed.</p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-icon"><i class="fa fa-heart"></i></div>
+                <h3>Community & Hospitality</h3>
+                <p>Food is connection. We treat every order as a seat at our family table, bringing friends and loved ones together in celebration.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ----------------------------------------FEEDBACK / REVIEWS----------------------------------------->
+    <section class="feed">
+        <h2>Write a Review or Share Your Story</h2>
+        <div class="feed_form">
+            <form id="about-review-form">
+                <input type="text" name="Name" placeholder="Your Name" required><br>
+                <input type="email" name="Email" placeholder="Your Email ID" required><br>
+                <input type="text" name="Number" placeholder="Contact Number (Optional)"><br>
+                <textarea rows="4" name="Review" placeholder="Tell us how Culinary King made your gathering special..." required></textarea><br>
+                <button type="submit">Submit Feedback</button>
+            </form>
         </div>
-    </div>
+    </section>
+
     <!-- --------------------------------------------FOOTER-------------------------------------------------------->
     <footer>
         <div class="footer_logo">
-            <a href="index.html"><img src="images/logo.png" width="250"></a>
+            <a href="index.html"><img src="images/logo.png" alt="Culinary King Logo" width="220"></a>
         </div>
         <div class="pages">  
             <h3>Customer Care</h3>
             <a href="about.html">About Us</a>|
             <a href="summer.html">Summer Sale</a>|
             <a href="catering.html">Catering</a>|
-            <a href="contact.html">Contact</a>
+            <a href="contact.html">Contact</a>|
+            <a href="orders.html">My Orders</a>
         </div>
         <div class="doc">
             <h3>Documents</h3>
-            <a href="#">Privacy Policy</a>|
-            <a href="#">Terms of Use</a>|
-            <a href="#">Refund Policy</a>
+            <a href="legal.html#privacy">Privacy Policy</a>|
+            <a href="legal.html#terms">Terms of Use</a>|
+            <a href="legal.html#refund">Refund Policy</a>
         </div>
         <div class="social">
             <h3>Follow Us</h3>
-            <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-        </div>
-        <div class="contact">
-            <h3>Contact Us</h3>
-            <a href="https://api.WhatsApp.com/send?phone=+910000000000" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
-            <a href="tel: +910000000000"><i class="fa fa-phone" aria-hidden="true"></i></a>
-            <a href="mailto: roshnideyic365@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fa fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
+            <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a>
         </div>
         <hr>
-        <p>Copyright &copy; 2021 Culinary King. All rights reserved.</p>
+        <p>Copyright &copy; 2026 Culinary King. All rights reserved.</p>
     </footer>
 
-<script type="text/javascript">
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzmY7HJmUEupsd8UBLj-aTxEsPcKQEWFYaxFA44IcIYrYCjanY1WcTF4zyKYXFQubtbTA/exec'
-            const form = document.forms['submit-googlesheet']
-          
-            form.addEventListener('submit', e => {
-              e.preventDefault()
-              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => alert("Thanks you for your valuable feedback!"))
-                .catch(error => console.error('Error!', error.message))
-            })
-          
-</script>
+    <script>
+        const aboutForm = document.getElementById('about-review-form');
+        if (aboutForm) {
+            aboutForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for sharing your experience with Culinary King!');
+                aboutForm.reset();
+            });
+        }
+    </script>
+    <script src="auth.js"></script>
+    <script src="site.js"></script>
 </body>
 </html>

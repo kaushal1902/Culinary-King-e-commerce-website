@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary King | Secure Checkout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="checkout-page-body">
+    <!-- ----------------------------------------NAVBAR----------------------------------------------------->
+    <nav class="nav nav_top">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="Culinary King Logo"></a>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav_side">
+                <a href="index.html">HOME</a>
+                <a href="about.html">ABOUT US</a>
+                <a href="summer.html">SUMMER SALE</a>
+                <a href="catering.html">CATERING</a>
+                <a href="contact.html">CONTACT</a>
+                <a href="cart.html" class="nav-cart-btn">
+                    <i class="fa fa-shopping-cart"></i> CART (<span data-cart-count>0</span>)
+                </a>
+                <div class="auth-wrapper" data-auth-container>
+                    <a href="login.html" class="auth-link" data-auth-link>LOG IN</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ----------------------------------------CHECKOUT MAIN---------------------------------------------->
+    <main class="checkout-layout-container">
+        <div class="checkout-header-section">
+            <h1><i class="fa fa-lock"></i> Secure Gourmet Checkout</h1>
+            <p>Complete your shipping and payment information to finalize your gourmet delivery.</p>
+        </div>
+
+        <div id="checkout-alert" class="checkout-alert-box" hidden></div>
+
+        <div class="checkout-grid">
+            <!-- Left: Customer shipping & payment form -->
+            <section class="checkout-form-column">
+                <form id="checkout-form" class="checkout-main-form" novalidate>
+                    <!-- Step 1: Customer & Delivery Details -->
+                    <div class="form-section-card">
+                        <div class="section-card-title">
+                            <span class="step-num">1</span>
+                            <h2>Shipping & Contact Information</h2>
+                        </div>
+
+                        <div class="form-row-grid">
+                            <div class="form-group col-span-2">
+                                <label for="cust-name">Full Name <span class="req">*</span></label>
+                                <input type="text" id="cust-name" name="name" placeholder="e.g. Kaushal Dangora" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cust-email">Email Address <span class="req">*</span></label>
+                                <input type="email" id="cust-email" name="email" placeholder="you@example.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cust-phone">Phone Number <span class="req">*</span></label>
+                                <input type="tel" id="cust-phone" name="phone" placeholder="(555) 000-1234" required>
+                            </div>
+
+                            <div class="form-group col-span-2">
+                                <label for="cust-street">Street Address <span class="req">*</span></label>
+                                <input type="text" id="cust-street" name="street" placeholder="123 Gourmet Lane, Suite 400" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cust-city">City <span class="req">*</span></label>
+                                <input type="text" id="cust-city" name="city" placeholder="Philadelphia" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cust-state">State / Province <span class="req">*</span></label>
+                                <input type="text" id="cust-state" name="state" placeholder="PA" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cust-zip">ZIP / Postal Code <span class="req">*</span></label>
+                                <input type="text" id="cust-zip" name="zip" placeholder="19147" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cust-country">Country <span class="req">*</span></label>
+                                <select id="cust-country" name="country">
+                                    <option value="United States" selected>United States</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                    <option value="India">India</option>
+                                    <option value="Australia">Australia</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-span-2">
+                                <label for="cust-notes">Delivery Instructions / Gift Message (Optional)</label>
+                                <textarea id="cust-notes" name="notes" rows="2" placeholder="Gate code, temperature-sensitive notes, or gift card message"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Payment Details -->
+                    <div class="form-section-card">
+                        <div class="section-card-title">
+                            <span class="step-num">2</span>
+                            <h2>Payment Method</h2>
+                        </div>
+
+                        <div class="payment-methods-options">
+                            <label class="payment-option selected">
+                                <input type="radio" name="payment_method" value="credit_card" checked>
+                                <div class="option-content">
+                                    <div class="option-header">
+                                        <strong>Credit / Debit Card</strong>
+                                        <span class="card-icons"><i class="fa fa-cc-visa"></i> <i class="fa fa-cc-mastercard"></i> <i class="fa fa-cc-amex"></i></span>
+                                    </div>
+                                    <small>Safe 256-bit encrypted checkout</small>
+                                </div>
+                            </label>
+
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="upi">
+                                <div class="option-content">
+                                    <div class="option-header">
+                                        <strong>UPI / Digital Wallet</strong>
+                                        <i class="fa fa-mobile"></i>
+                                    </div>
+                                    <small>Google Pay, Apple Pay, Paytm, PhonePe</small>
+                                </div>
+                            </label>
+
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="cod">
+                                <div class="option-content">
+                                    <div class="option-header">
+                                        <strong>Cash on Delivery (COD)</strong>
+                                        <i class="fa fa-money"></i>
+                                    </div>
+                                    <small>Pay upon package arrival</small>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Card fields (shown when credit card selected) -->
+                        <div class="card-fields-box" id="card-fields-container">
+                            <div class="form-group">
+                                <label for="card-num">Card Number</label>
+                                <div class="input-with-icon">
+                                    <input type="text" id="card-num" placeholder="4532 •••• •••• 8920" maxlength="19">
+                                    <i class="fa fa-credit-card"></i>
+                                </div>
+                            </div>
+                            <div class="form-row-grid">
+                                <div class="form-group">
+                                    <label for="card-exp">Expiry (MM/YY)</label>
+                                    <input type="text" id="card-exp" placeholder="12/28" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-cvv">CVV / CVC</label>
+                                    <input type="password" id="card-cvv" placeholder="•••" maxlength="4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit-order-btn" class="btn-place-order">
+                        <i class="fa fa-check-circle"></i> PLACE GOURMET ORDER NOW
+                    </button>
+                </form>
+            </section>
+
+            <!-- Right: Order Review Summary -->
+            <aside class="checkout-summary-column">
+                <div class="summary-card sticky-summary">
+                    <h3>Order Items (<span id="review-item-count">0</span>)</h3>
+                    <div class="review-items-list" id="review-items-list">
+                        <!-- Populated by checkout.js -->
+                    </div>
+
+                    <hr class="summary-divider">
+
+                    <div class="summary-line">
+                        <span>Items Subtotal</span>
+                        <strong id="review-subtotal">$0.00</strong>
+                    </div>
+                    <div class="summary-line">
+                        <span>Shipping & Handling</span>
+                        <span id="review-shipping">$9.99</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Estimated Tax (8%)</span>
+                        <span id="review-tax">$0.00</span>
+                    </div>
+                    <hr class="summary-divider">
+                    <div class="summary-line total-line">
+                        <strong>Grand Total</strong>
+                        <strong class="total-price" id="review-total">$0.00</strong>
+                    </div>
+
+                    <div class="trust-guarantee-box">
+                        <div class="trust-item"><i class="fa fa-leaf text-success"></i> <strong>Farm-Fresh Guaranteed:</strong> Freshly packed in temperature-monitored cold boxes.</div>
+                        <div class="trust-item"><i class="fa fa-lock text-primary"></i> <strong>Data Security:</strong> Encrypted transaction and privacy protection.</div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- --------------------------------------------FOOTER-------------------------------------------------------->
+    <footer>
+        <div class="footer_logo">
+            <a href="index.html"><img src="images/logo.png" alt="Culinary King Logo" width="220"></a>
+        </div>
+        <div class="pages">  
+            <h3>Customer Care</h3>
+            <a href="about.html">About Us</a>|
+            <a href="summer.html">Summer Sale</a>|
+            <a href="catering.html">Catering</a>|
+            <a href="contact.html">Contact</a>|
+            <a href="orders.html">My Orders</a>
+        </div>
+        <div class="doc">
+            <h3>Documents</h3>
+            <a href="legal.html#privacy">Privacy Policy</a>|
+            <a href="legal.html#terms">Terms of Use</a>|
+            <a href="legal.html#refund">Refund Policy</a>
+        </div>
+        <div class="social">
+            <h3>Follow Us</h3>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fa fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
+            <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a>
+        </div>
+        <hr>
+        <p>Copyright &copy; 2026 Culinary King. All rights reserved.</p>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

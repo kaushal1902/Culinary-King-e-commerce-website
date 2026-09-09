@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary King | Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="cart-page-body">
+    <!-- ----------------------------------------NAVBAR----------------------------------------------------->
+    <nav class="nav nav_top">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="Culinary King Logo"></a>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav_side">
+                <a href="index.html">HOME</a>
+                <a href="about.html">ABOUT US</a>
+                <a href="summer.html">SUMMER SALE</a>
+                <a href="catering.html">CATERING</a>
+                <a href="contact.html">CONTACT</a>
+                <a href="cart.html" class="nav-cart-btn active">
+                    <i class="fa fa-shopping-cart"></i> CART (<span data-cart-count>0</span>)
+                </a>
+                <div class="auth-wrapper" data-auth-container>
+                    <a href="login.html" class="auth-link" data-auth-link>LOG IN</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ----------------------------------------CART MAIN-------------------------------------------------->
+    <main class="cart-layout-container">
+        <div class="cart-header-section">
+            <h1><i class="fa fa-shopping-basket"></i> Your Culinary Basket</h1>
+            <p>Review your selected gourmet delicacies before proceeding to checkout.</p>
+        </div>
+
+        <div class="cart-message-box" data-cart-message role="status" hidden></div>
+
+        <div class="cart-empty-state" data-cart-empty hidden>
+            <div class="empty-icon-wrap">
+                <i class="fa fa-shopping-basket"></i>
+            </div>
+            <h2>Your basket is currently empty</h2>
+            <p>Explore our curated artisan cheeses, cured meats, and gourmet collections to fill your basket.</p>
+            <a href="summer.html" class="btn-primary"><i class="fa fa-arrow-left"></i> Discover Best Sellers</a>
+        </div>
+
+        <div class="cart-grid" id="cart-content-grid">
+            <!-- Left: Items list -->
+            <section class="cart-items-column" aria-label="Cart Items">
+                <div class="cart-items-header">
+                    <span>Product</span>
+                    <span class="text-center">Quantity</span>
+                    <span class="text-right">Subtotal</span>
+                </div>
+                <div class="cart-items-list" data-cart-items>
+                    <!-- Dynamically populated -->
+                </div>
+            </section>
+
+            <!-- Right: Order summary card -->
+            <aside class="cart-summary-column" aria-label="Cart Summary">
+                <div class="summary-card">
+                    <h3>Order Summary</h3>
+
+                    <div class="shipping-progress" id="shipping-progress-wrap">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="shipping-progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <p class="shipping-hint" id="shipping-hint-text">Add more items for <strong>FREE Shipping</strong>!</p>
+                    </div>
+
+                    <div class="summary-line">
+                        <span>Items Subtotal</span>
+                        <strong data-cart-subtotal>$0.00</strong>
+                    </div>
+                    <div class="summary-line">
+                        <span>Estimated Shipping</span>
+                        <span data-cart-shipping>$9.99</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Estimated Tax (8%)</span>
+                        <span data-cart-tax>$0.00</span>
+                    </div>
+                    <hr class="summary-divider">
+                    <div class="summary-line total-line">
+                        <strong>Estimated Total</strong>
+                        <strong class="total-price" data-cart-total>$0.00</strong>
+                    </div>
+
+                    <a href="checkout.html" class="btn-checkout" id="btn-proceed-checkout">
+                        PROCEED TO CHECKOUT <i class="fa fa-chevron-right"></i>
+                    </a>
+
+                    <a href="summer.html" class="btn-continue-shopping">
+                        <i class="fa fa-arrow-left"></i> Continue Shopping
+                    </a>
+
+                    <div class="summary-perks">
+                        <div class="perk-item"><i class="fa fa-shield"></i> 100% Secure Checkout</div>
+                        <div class="perk-item"><i class="fa fa-truck"></i> Fast Temperature-Controlled Delivery</div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- --------------------------------------------FOOTER-------------------------------------------------------->
+    <footer>
+        <div class="footer_logo">
+            <a href="index.html"><img src="images/logo.png" alt="Culinary King Logo" width="220"></a>
+        </div>
+        <div class="pages">  
+            <h3>Customer Care</h3>
+            <a href="about.html">About Us</a>|
+            <a href="summer.html">Summer Sale</a>|
+            <a href="catering.html">Catering</a>|
+            <a href="contact.html">Contact</a>|
+            <a href="orders.html">My Orders</a>
+        </div>
+        <div class="doc">
+            <h3>Documents</h3>
+            <a href="legal.html#privacy">Privacy Policy</a>|
+            <a href="legal.html#terms">Terms of Use</a>|
+            <a href="legal.html#refund">Refund Policy</a>
+        </div>
+        <div class="social">
+            <h3>Follow Us</h3>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fa fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
+            <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a>
+        </div>
+        <hr>
+        <p>Copyright &copy; 2026 Culinary King. All rights reserved.</p>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary King | Log In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+    <main class="auth-card">
+        <a class="auth-logo" href="index.html"><img src="images/logo.png" alt="Culinary King"></a>
+        <h1>Welcome back</h1>
+        <p>Log in to manage your Culinary King account.</p>
+        <form id="login-form" novalidate>
+            <label for="login-email">Email address</label>
+            <input id="login-email" name="email" type="email" autocomplete="email" required>
+            <label for="login-password">Password</label>
+            <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+            <p class="auth-message" id="login-message" role="alert"></p>
+            <button type="submit">Log In</button>
+        </form>
+        <p class="auth-switch">New to Culinary King? <a href="signup.html">Create an account</a></p>
+    </main>
+    <script src="auth-pages.js"></script>
+</body>
+</html>

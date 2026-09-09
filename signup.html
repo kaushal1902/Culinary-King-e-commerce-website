@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary King | Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+    <main class="auth-card">
+        <a class="auth-logo" href="index.html"><img src="images/logo.png" alt="Culinary King"></a>
+        <h1>Create your account</h1>
+        <p>Save your details for a quicker Culinary King experience.</p>
+        <form id="signup-form" novalidate>
+            <label for="signup-name">Full name</label>
+            <input id="signup-name" name="name" type="text" autocomplete="name" required>
+            <label for="signup-email">Email address</label>
+            <input id="signup-email" name="email" type="email" autocomplete="email" required>
+            <label for="signup-password">Password</label>
+            <input id="signup-password" name="password" type="password" minlength="8" autocomplete="new-password" required>
+            <p class="auth-message" id="signup-message" role="alert"></p>
+            <button type="submit">Create Account</button>
+        </form>
+        <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+    </main>
+    <script src="auth-pages.js"></script>
+</body>
+</html>

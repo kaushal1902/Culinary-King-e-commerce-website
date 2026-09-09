@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Culinary King | Contact Us & Locations</title>
+    <title>Culinary King | Customer Policies</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -25,7 +25,7 @@
                 <a href="about.html">ABOUT US</a>
                 <a href="summer.html">SUMMER SALE</a>
                 <a href="catering.html">CATERING</a>
-                <a href="contact.html" class="active">CONTACT</a>
+                <a href="contact.html">CONTACT</a>
                 <a href="cart.html" class="nav-cart-btn">
                     <i class="fa fa-shopping-cart"></i> CART (<span data-cart-count>0</span>)
                 </a>
@@ -36,43 +36,24 @@
         </div>
     </nav>
 
-    <!-- --------------------------------------------CONTACT MAIN------------------------------------------->
+    <!-- --------------------------------------------LEGAL MAIN--------------------------------------------->
     <main class="about-page-container">
-        <section class="about-hero-card" style="background: linear-gradient(135deg, #2b111e, #5a0c32);">
-            <h1>Get in Touch With Our Culinary Team</h1>
-            <p class="subtitle">Have questions regarding order shipping, custom gift boxes, or wholesale? We'd love to hear from you.</p>
+        <section class="about-hero-card" style="background: linear-gradient(135deg, #1f0b15, #3e0b23); padding: 40px 20px;">
+            <h1>Customer Policies & Terms</h1>
+            <p class="subtitle">Transparency, data security, and customer trust are paramount at Culinary King.</p>
         </section>
 
-        <section class="about-story-section">
-            <div class="about-story-content">
-                <h2>Customer Concierge & Inquiries</h2>
-                <p>Looking to have your gourmet gift order delivered via Same Day Express? Have questions regarding allergens, wine pairings, or event menus?</p>
-                <div style="margin-top: 20px; font-size: 15px; line-height: 2;">
-                    <p><i class="fa fa-phone" style="color:var(--primary-color); width:24px;"></i> <strong>Phone:</strong> +1 (215) 555-0199</p>
-                    <p><i class="fa fa-envelope" style="color:var(--primary-color); width:24px;"></i> <strong>Email:</strong> support@culinaryking.com</p>
-                    <p><i class="fa fa-map-marker" style="color:var(--primary-color); width:24px;"></i> <strong>Flagship Store:</strong> 9th & Italian Market, Philadelphia, PA 19147</p>
-                    <p><i class="fa fa-clock-o" style="color:var(--primary-color); width:24px;"></i> <strong>Hours:</strong> Mon - Sat: 8:00 AM – 7:00 PM | Sun: 9:00 AM – 5:00 PM</p>
-                </div>
-            </div>
-            <div class="about-story-img">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3058.8950860717647!2d-75.158913!3d39.935147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6c624838b9d03%3A0x87a9ef3ee8b6a378!2sSouth%209th%20Street%20Italian%20Market!5e0!3m2!1sen!2sus!4v1690000000000!5m2!1sen!2sus" width="100%" height="360" style="border:0; border-radius:14px;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
+        <section class="summary-card" style="margin-bottom: 40px; padding: 36px;">
+            <h2 id="privacy" style="color:var(--secondary-color); font-size: 22px; margin-bottom: 12px;"><i class="fa fa-lock" style="color:var(--primary-color);"></i> Privacy Policy</h2>
+            <p style="color:var(--text-muted); font-size:15px; margin-bottom: 28px; line-height: 1.7;">We use your customer and contact details solely to deliver and fulfill your culinary orders. All passwords are encrypted with bcrypt hashes and sensitive payment details are processed with standard SSL/TLS encryption. We never sell or share your data with third-party advertisers.</p>
+
+            <h2 id="terms" style="color:var(--secondary-color); font-size: 22px; margin-bottom: 12px;"><i class="fa fa-file-text-o" style="color:var(--primary-color);"></i> Terms of Use</h2>
+            <p style="color:var(--text-muted); font-size:15px; margin-bottom: 28px; line-height: 1.7;">By ordering from Culinary King, you agree to provide accurate delivery information. We take extraordinary care to maintain stock levels; however, seasonal items and small-batch imports are subject to artisan farm availability.</p>
+
+            <h2 id="refund" style="color:var(--secondary-color); font-size: 22px; margin-bottom: 12px;"><i class="fa fa-refresh" style="color:var(--primary-color);"></i> Refund & Freshness Policy</h2>
+            <p style="color:var(--text-muted); font-size:15px; line-height: 1.7;">Every perishable item is packed with ice packs in insulated thermal coolers. If an item arrives damaged or compromised, contact our concierge at <strong>support@culinaryking.com</strong> within 48 hours for an immediate replacement or full refund.</p>
         </section>
     </main>
-
-    <!-- ----------------------------------------FEEDBACK / REVIEWS----------------------------------------->
-    <section class="feed">
-        <h2>Send Us a Message</h2>
-        <div class="feed_form">
-            <form id="contact-form">
-                <input type="text" name="Name" placeholder="Your Full Name" required><br>
-                <input type="email" name="Email" placeholder="Your Email Address" required><br>
-                <input type="text" name="Number" placeholder="Contact Number"><br>
-                <textarea rows="4" name="Review" placeholder="How can our culinary team help you today?" required></textarea><br>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-    </section>
 
     <!-- --------------------------------------------FOOTER-------------------------------------------------------->
     <footer>
@@ -105,6 +86,5 @@
     </footer>
 
     <script src="auth.js"></script>
-    <script src="site.js"></script>
 </body>
 </html>
