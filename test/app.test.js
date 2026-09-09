@@ -5,6 +5,18 @@ const assert = require('node:assert/strict');
 const request = require('supertest');
 const { app } = require('../server');
 
+test('serves the home page and static assets', async () => {
+  const homeRes = await request(app).get('/');
+  assert.equal(homeRes.statusCode, 200);
+  assert.match(homeRes.text, /Culinary King/);
+
+  const cssRes = await request(app).get('/css/style.css');
+  assert.equal(cssRes.statusCode, 200);
+
+  const jsRes = await request(app).get('/js/auth.js');
+  assert.equal(jsRes.statusCode, 200);
+});
+
 test('serves the login page', async () => {
   const response = await request(app).get('/login.html');
   assert.equal(response.statusCode, 200);
