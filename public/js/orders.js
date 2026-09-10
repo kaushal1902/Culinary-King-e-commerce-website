@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         <img src="${escapeHtml(item.image || 'images/char.jpg')}" alt="${escapeHtml(item.name)}" class="order-item-thumb">
         <div class="order-item-desc">
           <h4>${escapeHtml(item.name)}</h4>
-          <p class="order-item-unit">Qty: <strong>${item.quantity}</strong> × $${(item.price || 0).toFixed(2)}</p>
+          <p class="order-item-unit">Qty: <strong>${item.quantity}</strong> × ₹${(item.price || 0).toFixed(2)}</p>
         </div>
         <div class="order-item-subtotal">
-          <strong>$${(item.subtotal || 0).toFixed(2)}</strong>
+          <strong>₹${(item.subtotal || 0).toFixed(2)}</strong>
         </div>
       </div>
     `).join('');
@@ -95,18 +95,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             <h4><i class="fa fa-map-marker"></i> Delivery Address</h4>
             <p>${escapeHtml(customer.street)}<br>
             ${escapeHtml(customer.city)}, ${escapeHtml(customer.state || '')} ${escapeHtml(customer.zip)}<br>
-            ${escapeHtml(customer.country || 'United States')}</p>
+            ${escapeHtml(customer.country || 'India')}</p>
             <p class="contact-info"><i class="fa fa-phone"></i> ${escapeHtml(customer.phone || 'N/A')}</p>
           </div>
 
           <div class="detail-box">
             <h4><i class="fa fa-credit-card"></i> Payment & Cost</h4>
-            <p class="pay-method"><i class="fa fa-check-circle text-success"></i> ${order.payment?.method === 'cod' ? 'Cash on Delivery' : 'Credit Card (Paid)'}</p>
+            <p class="pay-method"><i class="fa fa-check-circle text-success"></i> ${order.payment?.method === 'cod' ? 'Cash on Delivery' : 'Online Payment (Paid)'}</p>
             <div class="price-breakdown-mini">
-              <div><span>Subtotal:</span> <span>$${subtotal.toFixed(2)}</span></div>
-              <div><span>Shipping:</span> <span>${shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span></div>
-              <div><span>Tax (8%):</span> <span>$${tax.toFixed(2)}</span></div>
-              <div class="grand-total-row"><span>Total Paid:</span> <strong>$${total.toFixed(2)}</strong></div>
+              <div><span>Subtotal:</span> <span>₹${subtotal.toFixed(2)}</span></div>
+              <div><span>Shipping:</span> <span>${shipping === 0 ? 'FREE' : `₹${shipping.toFixed(2)}`}</span></div>
+              <div><span>Tax (5%):</span> <span>₹${tax.toFixed(2)}</span></div>
+              <div class="grand-total-row"><span>Total Paid:</span> <strong>₹${total.toFixed(2)}</strong></div>
             </div>
           </div>
         </div>

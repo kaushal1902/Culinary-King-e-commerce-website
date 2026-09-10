@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Order = require('../models/Order');
 const Cart = require('../models/Cart');
 const Product = require('../models/Product');
-const { requireAuth, optionalAuth } = require('../middleware/auth');
+const { requireAuth, requireAdmin, optionalAuth } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -12,6 +12,103 @@ function generateOrderNumber() {
   const randomSuffix = Math.floor(1000 + Math.random() * 9000);
   return `CK-${dateStr}-${randomSuffix}`;
 }
+
+// GET /api/orders/admin/stats - Admin KPIs & metrics (Admin)
+router.get('/admin/stats', requireAdmin, async (request, response, next) => {
+  try {
+    const totalOrders = await Order.countDocuments();
+    const placedOrders = await Order.countDocuments({ orderStatus: 'placed' });
+    const processingOrders = await Order.countDocuments({ orderStatus: 'processing' });
+    const shippedOrders = await Order.countDocuments({ orderStatus: 'shipped' });
+    const deliveredOrders = await Order.countDocuments({ orderStatus: 'delivered' });
+    const cancelledOrders = await Order.countDocuments({ orderStatus: 'cancelled' });
+    const totalProducts = await Product.countDocuments();
+
+    const revenueResult = await Order.aggregate([
+      { $match: { orderStatus: { $ne: 'cancelled' } } },
+      { $group: { _id: null, totalRevenue: { $sum: '$pricing.total' } } }
+    ]);
+
+    const totalRevenue = revenueResult[0]?.totalRevenue || 0;
+
+    return response.json({
+      stats: {
+        totalRevenue: Number(totalRevenue.toFixed(2)),
+        totalOrders,
+        placedOrders,
+        processingOrders,
+        shippedOrders,
+        deliveredOrders,
+        cancelledOrders,
+        totalProducts
+      }
+    });
+  } catch (error) {
+    return next(error);
+  }
+});
+
+// GET /api/orders/admin/all - Get all store orders (Admin)
+router.get('/admin/all', requireAdmin, async (request, response, next) => {
+  try {
+    const { status, search } = request.query;
+    let query = {};
+
+    if (status && status !== 'all') {
+      query.orderStatus = status;
+    }
+
+    if (search) {
+      const searchRegex = new RegExp(search.trim(), 'i');
+      query.$or = [
+        { orderNumber: searchRegex },
+        { 'customer.name': searchRegex },
+        { 'customer.email': searchRegex },
+        { 'customer.city': searchRegex }
+      ];
+    }
+
+    const orders = await Order.find(query).sort({ createdAt: -1 });
+    return response.json({ orders });
+  } catch (error) {
+    return next(error);
+  }
+});
+
+// PATCH /api/orders/admin/:id/status - Update order status (Admin)
+router.patch('/admin/:id/status', requireAdmin, async (request, response, next) => {
+  try {
+    const { id } = request.params;
+    const { orderStatus } = request.body;
+
+    const validStatuses = ['placed', 'processing', 'shipped', 'delivered', 'cancelled'];
+    if (!validStatuses.includes(orderStatus)) {
+      return response.status(400).json({ message: `Invalid status. Must be one of: ${validStatuses.join(', ')}` });
+    }
+
+    let query = {};
+    if (mongoose.isValidObjectId(id)) {
+      query._id = id;
+    } else {
+      query.orderNumber = id;
+    }
+
+    const order = await Order.findOne(query);
+    if (!order) {
+      return response.status(404).json({ message: 'Order not found.' });
+    }
+
+    order.orderStatus = orderStatus;
+    if (orderStatus === 'delivered' && order.payment) {
+      order.payment.status = 'paid';
+    }
+    await order.save();
+
+    return response.json({ message: 'Order status updated successfully.', order });
+  } catch (error) {
+    return next(error);
+  }
+});
 
 // POST /api/orders - Create new order
 router.post('/', optionalAuth, async (request, response, next) => {
@@ -78,8 +175,8 @@ router.post('/', optionalAuth, async (request, response, next) => {
     }
 
     const subtotal = Number(orderItems.reduce((sum, item) => sum + item.subtotal, 0).toFixed(2));
-    const shippingFee = subtotal >= 100 ? 0 : 9.99;
-    const tax = Number((subtotal * 0.08).toFixed(2)); // 8% sales tax
+    const shippingFee = subtotal >= 999 ? 0 : 99;
+    const tax = Number((subtotal * 0.05).toFixed(2)); // 5% GST
     const total = Number((subtotal + shippingFee + tax).toFixed(2));
 
     const orderNumber = generateOrderNumber();

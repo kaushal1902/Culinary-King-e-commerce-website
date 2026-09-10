@@ -16,7 +16,7 @@ const authLimiter = rateLimit({
 });
 
 function publicUser(user) {
-  return { id: user._id, name: user.name, email: user.email };
+  return { id: user._id, name: user.name, email: user.email, role: user.role || 'user' };
 }
 
 function setAuthCookie(response, userId) {
@@ -51,7 +51,7 @@ router.post('/signup', authLimiter, async (request, response, next) => {
     }
 
     const passwordHash = await bcrypt.hash(password, 12);
-    const user = await User.create({ name: name.trim(), email: normalizedEmail, passwordHash });
+    const user = await User.create({ name: name.trim(), email: normalizedEmail, passwordHash, role: 'user' });
     setAuthCookie(response, user._id);
     return response.status(201).json({ user: publicUser(user) });
   } catch (error) {
@@ -88,7 +88,7 @@ router.post('/logout', (request, response) => {
 
 router.get('/me', requireAuth, async (request, response, next) => {
   try {
-    const user = await User.findById(request.userId).select('_id name email');
+    const user = await User.findById(request.userId).select('_id name email role');
     if (!user) return response.status(401).json({ message: 'Account not found.' });
     return response.json({ user: publicUser(user) });
   } catch (error) {

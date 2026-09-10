@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
             <a href="orders.html" class="user-dropdown-item"><i class="fa fa-shopping-bag"></i> My Orders</a>
             <a href="cart.html" class="user-dropdown-item"><i class="fa fa-shopping-cart"></i> My Cart</a>
+            ${user.role === 'admin' ? '<a href="admin.html" class="user-dropdown-item admin-link"><i class="fa fa-tachometer text-primary"></i> <strong>Admin Portal</strong></a>' : ''}
             <hr class="user-dropdown-divider">
             <button type="button" class="user-dropdown-item logout-btn" id="global-logout-btn"><i class="fa fa-sign-out"></i> Log Out</button>
           </div>

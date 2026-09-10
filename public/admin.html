@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary King | Admin Command Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+    <!-- ----------------------------------------ADMIN HEADER----------------------------------------------->
+    <header class="admin-topbar">
+        <div class="admin-topbar-left">
+            <button id="admin-sidebar-toggle" class="admin-menu-toggle" aria-label="Toggle Sidebar">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a href="index.html" class="admin-brand">
+                <img src="images/logo.png" alt="Culinary King Logo" height="36">
+                <span class="admin-badge">ADMIN PORTAL</span>
+            </a>
+        </div>
+        <div class="admin-topbar-right">
+            <a href="index.html" class="admin-store-link"><i class="fa fa-external-link"></i> <span class="hide-mobile">View Live Store</span></a>
+            <div class="admin-user-pill" id="admin-user-display">
+                <span class="user-avatar-circle">A</span>
+                <span class="user-name-text" id="admin-user-name">Administrator</span>
+            </div>
+            <button type="button" class="admin-logout-btn" id="admin-logout" title="Log Out"><i class="fa fa-sign-out"></i></button>
+        </div>
+    </header>
+
+    <!-- ----------------------------------------ADMIN LAYOUT----------------------------------------------->
+    <div class="admin-container">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar" id="admin-sidebar">
+            <nav class="admin-nav">
+                <button class="admin-nav-item active" data-tab="overview">
+                    <i class="fa fa-tachometer"></i> <span>Overview & KPIs</span>
+                </button>
+                <button class="admin-nav-item" data-tab="orders">
+                    <i class="fa fa-shopping-bag"></i> <span>Order Management</span>
+                    <span class="nav-count-badge" id="sidebar-order-count">0</span>
+                </button>
+                <button class="admin-nav-item" data-tab="products">
+                    <i class="fa fa-cutlery"></i> <span>Product Catalog</span>
+                    <span class="nav-count-badge" id="sidebar-product-count">0</span>
+                </button>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <p>Culinary King Operations v2.0</p>
+                <small>Connected to MongoDB Atlas</small>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-main">
+            <!-- Toast Notification Container -->
+            <div id="admin-toast-container" class="toast-container"></div>
+
+            <!-- TAB 1: OVERVIEW & KPIS -->
+            <section class="admin-tab-content active" id="tab-overview">
+                <div class="admin-section-header">
+                    <div>
+                        <h1>Executive Store Overview</h1>
+                        <p>Real-time analytics, revenue metrics, and pending order operations.</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn-primary" id="quick-add-product-btn"><i class="fa fa-plus"></i> Add Product</button>
+                    </div>
+                </div>
+
+                <!-- KPI Metric Cards Grid -->
+                <div class="kpi-cards-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-icon icon-revenue"><i class="fa fa-inr"></i></div>
+                        <div class="kpi-data">
+                            <span class="kpi-title">TOTAL REVENUE</span>
+                            <strong class="kpi-value" id="kpi-revenue">₹0.00</strong>
+                            <span class="kpi-sub"><i class="fa fa-line-chart text-success"></i> Across fulfilled orders</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-icon icon-orders"><i class="fa fa-shopping-basket"></i></div>
+                        <div class="kpi-data">
+                            <span class="kpi-title">TOTAL ORDERS</span>
+                            <strong class="kpi-value" id="kpi-orders">0</strong>
+                            <span class="kpi-sub">Lifetime orders placed</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-icon icon-pending"><i class="fa fa-clock-o"></i></div>
+                        <div class="kpi-data">
+                            <span class="kpi-title">ACTION REQUIRED</span>
+                            <strong class="kpi-value text-warning" id="kpi-pending">0</strong>
+                            <span class="kpi-sub">Placed / Processing orders</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-icon icon-products"><i class="fa fa-cutlery"></i></div>
+                        <div class="kpi-data">
+                            <span class="kpi-title">ACTIVE DELICACIES</span>
+                            <strong class="kpi-value" id="kpi-products">0</strong>
+                            <span class="kpi-sub">Products in catalog</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders Widget -->
+                <div class="admin-card" style="margin-top: 30px;">
+                    <div class="admin-card-header">
+                        <h2><i class="fa fa-history"></i> Recent Customer Orders</h2>
+                        <button class="btn-link" id="overview-view-all-orders">View All Orders <i class="fa fa-chevron-right"></i></button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="admin-table" id="recent-orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order #</th>
+                                    <th>Date</th>
+                                    <th>Customer</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-orders-tbody">
+                                <tr><td colspan="7" class="text-center py-4"><i class="fa fa-spinner fa-spin"></i> Loading recent orders...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: ORDER MANAGEMENT -->
+            <section class="admin-tab-content" id="tab-orders">
+                <div class="admin-section-header">
+                    <div>
+                        <h1>Order Management & Fulfillment</h1>
+                        <p>Track shipments, customer details, and update fulfillment progress.</p>
+                    </div>
+                    <button class="btn-secondary" id="refresh-orders-btn"><i class="fa fa-refresh"></i> Refresh</button>
+                </div>
+
+                <!-- Order Filters & Search Bar -->
+                <div class="admin-filter-bar">
+                    <div class="search-input-wrap">
+                        <i class="fa fa-search"></i>
+                        <input type="text" id="order-search-input" placeholder="Search by order #, customer name, email, or city...">
+                    </div>
+
+                    <div class="status-filter-pills" id="order-status-tabs">
+                        <button class="filter-pill active" data-status="all">All</button>
+                        <button class="filter-pill" data-status="placed">Placed</button>
+                        <button class="filter-pill" data-status="processing">Processing</button>
+                        <button class="filter-pill" data-status="shipped">Shipped</button>
+                        <button class="filter-pill" data-status="delivered">Delivered</button>
+                        <button class="filter-pill" data-status="cancelled">Cancelled</button>
+                    </div>
+                </div>
+
+                <!-- Full Orders Table -->
+                <div class="admin-card">
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order Number</th>
+                                    <th>Order Date</th>
+                                    <th>Customer Details</th>
+                                    <th>Items Summary</th>
+                                    <th>Total Amount</th>
+                                    <th>Payment</th>
+                                    <th>Status & Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="all-orders-tbody">
+                                <tr><td colspan="7" class="text-center py-4"><i class="fa fa-spinner fa-spin"></i> Loading store orders...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: PRODUCT CATALOG MANAGEMENT -->
+            <section class="admin-tab-content" id="tab-products">
+                <div class="admin-section-header">
+                    <div>
+                        <h1>Product Catalog Management</h1>
+                        <p>Create new gourmet products, update pricing, stock, and promotional sales.</p>
+                    </div>
+                    <button class="btn-primary" id="open-add-product-modal-btn"><i class="fa fa-plus-circle"></i> Add New Product</button>
+                </div>
+
+                <!-- Product Search & Category Filter -->
+                <div class="admin-filter-bar">
+                    <div class="search-input-wrap">
+                        <i class="fa fa-search"></i>
+                        <input type="text" id="product-search-input" placeholder="Search products by title or category...">
+                    </div>
+                </div>
+
+                <!-- Products Table -->
+                <div class="admin-card">
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Regular Price</th>
+                                    <th>Sale Price</th>
+                                    <th>Stock</th>
+                                    <th>Sale Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-tbody">
+                                <tr><td colspan="7" class="text-center py-4"><i class="fa fa-spinner fa-spin"></i> Loading product catalog...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ----------------------------------------MODALS----------------------------------------------------->
+
+    <!-- Modal 1: Add / Edit Product Modal -->
+    <div class="admin-modal-backdrop" id="product-modal" hidden>
+        <div class="admin-modal-card">
+            <div class="modal-header">
+                <h3 id="product-modal-title"><i class="fa fa-cutlery"></i> Add New Product</h3>
+                <button type="button" class="modal-close-btn" data-close-modal="product-modal">&times;</button>
+            </div>
+            <form id="product-form" class="modal-form" novalidate>
+                <input type="hidden" id="prod-form-id" name="id">
+
+                <div class="form-row-grid">
+                    <div class="form-group col-span-2">
+                        <label for="prod-name">Product Name <span class="req">*</span></label>
+                        <input type="text" id="prod-name" name="name" placeholder="e.g. Truffle Aged Gouda Wheel" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prod-category">Category <span class="req">*</span></label>
+                        <select id="prod-category" name="category" required>
+                            <option value="Artisan Cheese">Artisan Cheese</option>
+                            <option value="Cured Meats">Cured Meats</option>
+                            <option value="Specialty Foods">Specialty Foods</option>
+                            <option value="Cakes">Cakes</option>
+                            <option value="Gift Boxes">Gift Boxes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prod-stock">Stock Quantity <span class="req">*</span></label>
+                        <input type="number" id="prod-stock" name="stock" min="0" value="25" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prod-price">Regular Price (₹) <span class="req">*</span></label>
+                        <input type="number" id="prod-price" name="price" step="0.01" min="0" placeholder="1499" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prod-sale-price">Sale Price (₹) (Optional)</label>
+                        <input type="number" id="prod-sale-price" name="salePrice" step="0.01" min="0" placeholder="1199">
+                    </div>
+
+                    <div class="form-group col-span-2">
+                        <label for="prod-image">Image File / URL <span class="req">*</span></label>
+                        <input type="text" id="prod-image" name="image" value="images/char.jpg" placeholder="e.g. images/char.jpg or https://..." required>
+                        <small class="form-hint">Available presets: <code>images/char.jpg</code>, <code>images/bacon.jpg</code>, <code>images/hot.jpg</code>, <code>images/cake.jpg</code>, <code>images/pic1.jpg</code></small>
+                    </div>
+
+                    <div class="form-group col-span-2">
+                        <label for="prod-desc">Description <span class="req">*</span></label>
+                        <textarea id="prod-desc" name="description" rows="3" placeholder="Handcrafted description highlighting tasting notes and artisan heritage..." required></textarea>
+                    </div>
+
+                    <div class="form-group col-span-2">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="prod-is-sale" name="isOnSale">
+                            <span>Enable "SALE" Badge on Storefront</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-close-modal="product-modal">Cancel</button>
+                    <button type="submit" class="btn-primary" id="save-product-btn"><i class="fa fa-save"></i> Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 2: View Order Details Modal -->
+    <div class="admin-modal-backdrop" id="order-detail-modal" hidden>
+        <div class="admin-modal-card order-modal-card">
+            <div class="modal-header">
+                <h3><i class="fa fa-file-text-o"></i> Order Details: <span id="modal-order-num" class="text-primary">CK-XXXX</span></h3>
+                <button type="button" class="modal-close-btn" data-close-modal="order-detail-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="order-modal-body">
+                <!-- Populated dynamically by admin.js -->
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" data-close-modal="order-detail-modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

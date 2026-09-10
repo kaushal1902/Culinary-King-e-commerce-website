@@ -84,23 +84,23 @@ document.addEventListener('DOMContentLoaded', async () => {
           <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" class="review-item-img">
           <div class="review-item-info">
             <h4>${escapeHtml(product.name)}</h4>
-            <small>Qty: ${quantity} × $${product.price.toFixed(2)}</small>
+            <small>Qty: ${quantity} × ₹${product.price.toFixed(2)}</small>
           </div>
-          <strong class="review-item-price">$${subtotal.toFixed(2)}</strong>
+          <strong class="review-item-price">₹${subtotal.toFixed(2)}</strong>
         `;
         itemsContainer.appendChild(itemEl);
       });
 
       const subtotal = currentCart.total || 0;
-      const shipping = subtotal >= 100 ? 0 : 9.99;
-      const tax = subtotal * 0.08;
+      const shipping = subtotal >= 999 ? 0 : 99;
+      const tax = subtotal * 0.05;
       const total = subtotal + shipping + tax;
 
       itemCountEl.textContent = currentCart.itemCount;
-      subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
-      shippingEl.textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
-      taxEl.textContent = `$${tax.toFixed(2)}`;
-      totalEl.textContent = `$${total.toFixed(2)}`;
+      subtotalEl.textContent = `₹${subtotal.toFixed(2)}`;
+      shippingEl.textContent = shipping === 0 ? 'FREE' : `₹${shipping.toFixed(2)}`;
+      taxEl.textContent = `₹${tax.toFixed(2)}`;
+      totalEl.textContent = `₹${total.toFixed(2)}`;
 
     } catch (err) {
       showAlert(err.message, 'error');

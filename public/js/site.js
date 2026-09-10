@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         <h3>${product.name}</h3>
         <p>${product.description || ''}</p>
         <div class="price-container">
-          <span class="current-price">$${unitPrice.toFixed(2)}</span>
-          ${oldPrice ? `<span class="original-price">$${oldPrice.toFixed(2)}</span>` : ''}
+          <span class="current-price">₹${unitPrice.toFixed(2)}</span>
+          ${oldPrice ? `<span class="original-price">₹${oldPrice.toFixed(2)}</span>` : ''}
         </div>
         <button type="button" class="add-to-cart" data-add-to-cart="${product.slug}" data-product-name="${product.name}">
           <i class="fa fa-shopping-basket"></i> ADD TO CART

@@ -46,25 +46,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Calculate pricing values
     const subtotal = cart.total || 0;
-    const isFreeShipping = subtotal >= 100;
-    const shipping = isFreeShipping ? 0 : 9.99;
-    const tax = subtotal * 0.08;
+    const isFreeShipping = subtotal >= 999;
+    const shipping = isFreeShipping ? 0 : 99;
+    const tax = subtotal * 0.05;
     const total = subtotal + shipping + tax;
 
-    if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
-    if (shippingEl) shippingEl.textContent = isFreeShipping ? 'FREE' : `$${shipping.toFixed(2)}`;
-    if (taxEl) taxEl.textContent = `$${tax.toFixed(2)}`;
-    if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+    if (subtotalEl) subtotalEl.textContent = `₹${subtotal.toFixed(2)}`;
+    if (shippingEl) shippingEl.textContent = isFreeShipping ? 'FREE' : `₹${shipping.toFixed(2)}`;
+    if (taxEl) taxEl.textContent = `₹${tax.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = `₹${total.toFixed(2)}`;
 
     // Update free shipping meter
     if (shippingFill && shippingHint) {
-      const percentage = Math.min(100, Math.round((subtotal / 100) * 100));
+      const percentage = Math.min(100, Math.round((subtotal / 999) * 100));
       shippingFill.style.width = `${percentage}%`;
       if (isFreeShipping) {
         shippingHint.innerHTML = '🎉 You qualified for <strong>FREE Shipping</strong>!';
       } else {
-        const remaining = (100 - subtotal).toFixed(2);
-        shippingHint.innerHTML = `Add <strong>$${remaining}</strong> more to unlock <strong>FREE Shipping</strong>!`;
+        const remaining = (999 - subtotal).toFixed(2);
+        shippingHint.innerHTML = `Add <strong>₹${remaining}</strong> more to unlock <strong>FREE Shipping</strong>!`;
       }
     }
 
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" class="cart-item-thumb">
           <div class="cart-item-details">
             <h3 class="cart-item-title">${escapeHtml(product.name)}</h3>
-            <p class="cart-item-unit-price">$${product.price.toFixed(2)} each</p>
+            <p class="cart-item-unit-price">₹${product.price.toFixed(2)} each</p>
             <button type="button" class="btn-remove-item" data-remove="${product.id}" title="Remove item">
               <i class="fa fa-trash"></i> Remove
             </button>
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         </div>
 
         <div class="cart-item-subtotal-cell">
-          <strong class="item-subtotal-val">$${subtotal.toFixed(2)}</strong>
+          <strong class="item-subtotal-val">₹${subtotal.toFixed(2)}</strong>
         </div>
       `;
       list.appendChild(itemEl);

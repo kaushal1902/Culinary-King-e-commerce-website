@@ -56,3 +56,17 @@ test('validates required order fields', async () => {
   assert.equal(response.statusCode, 400);
   assert.match(response.body.message, /complete all required customer shipping information/);
 });
+
+test('serves the admin command center page', async () => {
+  const adminRes = await request(app).get('/admin.html');
+  assert.equal(adminRes.statusCode, 200);
+  assert.match(adminRes.text, /Admin Command Center/);
+});
+
+test('protects admin API endpoints from unauthorized requests', async () => {
+  const statsRes = await request(app).get('/api/orders/admin/stats');
+  assert.equal(statsRes.statusCode, 401);
+
+  const prodRes = await request(app).post('/api/products').send({ name: 'Test' });
+  assert.equal(prodRes.statusCode, 401);
+});
